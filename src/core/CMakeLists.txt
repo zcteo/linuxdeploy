@@ -31,8 +31,12 @@ endif()
 message(STATUS "Generating excludelist")
 execute_process(
     COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/generate-excludelist.sh
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    TIMEOUT 10
+    RESULT_VARIABLE EXCLUDELIST_RESULT
 )
+if(NOT EXCLUDELIST_RESULT EQUAL 0)
+    message(WARNING "Updating excludelist failed, using outdated copy")
+endif()
 
 add_library(linuxdeploy_core_log STATIC log.cpp)
 target_include_directories(linuxdeploy_core_log PUBLIC ${PROJECT_SOURCE_DIR}/include)

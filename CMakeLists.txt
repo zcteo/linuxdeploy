@@ -5,6 +5,9 @@ project(linuxdeploy C CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(STATIC_BUILD ON)
+set(BUILD_TESTING OFF)
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/Modules/")
 
 # support for ccache
